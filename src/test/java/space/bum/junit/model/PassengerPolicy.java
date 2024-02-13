@@ -5,17 +5,17 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 class PassengerPolicy {
+  private Flight economyFlight;
+  private Passenger kim;
 
   @Given("there is an economy flight")
   public void there_is_an_economy_flight() {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+    economyFlight = new EconomyFlight("1");
   }
 
   @When("we have a regular passenger")
   public void we_have_a_regular_passenger() {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+    kim = new Passenger("김", false);
   }
 
   @Then("you can add and remove him from an economy flight")
