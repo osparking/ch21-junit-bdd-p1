@@ -50,7 +50,7 @@ public class PassengerPolicy {
         () -> assertEquals(1, economyFlight.getPassengers().size()),
         () -> assertTrue(economyFlight.getPassengers().contains(kim)),
         () -> assertTrue(new ArrayList<>(economyFlight.getPassengers())
-            .get(0).getName().equals("Mike")));
+            .get(0).getName().equals("김")));
   }
 
   @When("^we have a VIP passenger$")
