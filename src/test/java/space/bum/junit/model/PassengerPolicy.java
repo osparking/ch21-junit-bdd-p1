@@ -1,5 +1,9 @@
 package space.bum.junit.model;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,19 +13,25 @@ class PassengerPolicy {
   private Passenger kim;
 
   @Given("there is an economy flight")
-  public void there_is_an_economy_flight() {
+  public void there_is_an_economy_flight() throws Throwable {
     economyFlight = new EconomyFlight("1");
   }
 
   @When("we have a regular passenger")
-  public void we_have_a_regular_passenger() {
+  public void we_have_a_regular_passenger() throws Throwable {
     kim = new Passenger("김", false);
   }
 
   @Then("you can add and remove him from an economy flight")
-  public void you_can_add_and_remove_him_from_an_economy_flight() {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+  public void you_can_add_and_remove_him_from_an_economy_flight()
+      throws Throwable {
+    assertAll("검증 대상 상태 - 일반 승객 경제적 항공편",
+        () -> assertEquals("1", economyFlight.getId()),
+        () -> assertEquals(true, economyFlight.addPassenger(kim)),
+        () -> assertEquals(1, economyFlight.getPassengers().size()),
+        () -> assertTrue(economyFlight.getPassengers().contains(kim)),
+        () -> assertEquals(true, economyFlight.removePassenger(kim)),
+        () -> assertEquals(0, economyFlight.getPassengers().size()));
   }
 
   @Then("you cannot add a regular passenger to an economy flight more than once")
