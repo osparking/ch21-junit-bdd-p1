@@ -10,7 +10,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-class PassengerPolicy {
+public class PassengerPolicy {
   private Flight economyFlight;
   private Passenger kim;
   private Flight businessFlight;
